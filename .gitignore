@@ -58,4 +58,4 @@ typings/
 .env
 
 # webpack shit
-bundle.js
+bundle.js*
