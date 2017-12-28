@@ -1,6 +1,7 @@
-import express from 'express';
+const router = require('express').Router();
+// import { Router } from 'express';
 
-const router = express.Router();
+// const router = new Router();
 
 function protectedRoute(req, res, next) {
   res.send('Here\'s the secret!');
@@ -9,4 +10,6 @@ function protectedRoute(req, res, next) {
 router.route('/protected')
   .get(protectedRoute);
 
-export default router;
+module.exports = router;
+
+// export default router;
