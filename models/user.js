@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const validateEmail = email => (
   (/\S+@\S+\.\S+/).test(email)
