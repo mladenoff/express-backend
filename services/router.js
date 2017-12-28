@@ -1,4 +1,7 @@
 const router = require('express').Router();
+
+const AuthenticationController = require('../controllers/authentication_controller');
+
 // import { Router } from 'express';
 
 // const router = new Router();
