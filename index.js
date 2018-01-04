@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
-const router = require('./services/router');
+import router from './services/router';
 
 const app = express();
 
