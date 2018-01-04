@@ -1,17 +1,17 @@
-const router = require('express').Router();
-const passport = require('passport');
+// const router = require('express').Router();
+// const passport = require('passport');
 
-const passportService = require('./passport');
-const AuthenticationController = require('../controllers/authentication_controller');
+// const passportService = require('./passport');
+// const AuthenticationController = require('../controllers/authentication_controller');
 // Why can't I write this in ES6????
 
-// import express from 'express';
-// import passport from 'passport';
+import express from 'express';
+import passport from 'passport';
 
-// import passportService from './passport';
-// import * as AuthenticationController from '../controllers/authentication_controller';
+import passportService from './passport';
+import * as AuthenticationController from '../controllers/authentication_controller';
 
-// const router = express.Router();
+const router = express.Router();
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 
@@ -30,7 +30,7 @@ router.route('/signin')
 router.route('/signup')
   .post(AuthenticationController.signup);
 
-module.exports = router;
+// module.exports = router;
 
-// export default router;
+export default router;
 // likewise here

@@ -3,11 +3,11 @@ import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 
-const router = require('./services/router');
+import router from './services/router';
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:intoToAuth/introToAuth');
+//mongoose.connect('mongodb://localhost:intoToAuth/introToAuth');
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
