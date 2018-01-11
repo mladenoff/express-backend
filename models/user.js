@@ -1,7 +1,8 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
+// replaced with object destructuring in `import`
 
 const validateEmail = email => (
   (/\S+@\S+\.\S+/).test(email)
@@ -35,5 +36,11 @@ userSchema.pre('save', function callback(next) {
     next();
   }
 });
+
+userSchema.methods.comparePassword = function comparePassword(candidatePassword, callback) {
+  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    if (err) { return callback(null, isMatch )}
+  });
+};
 
 export default mongoose.model('user', userSchema);
