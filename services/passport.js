@@ -1,29 +1,27 @@
 import passport from 'passport';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+import LocalStrategy from 'passport-local';
 
 import config from '../config';
 import User from '../models/user';
 
-// TODO: continue with sign-in part of video series
-// keep an eye on Local vs. other strategy
+const localOptions = {
+  usernameField: 'email',
+  secretOrKey: 'gah!',
+};
 
-// const localOptions = {
-//   usernameField: 'email',
-//   secretOrKey: 'gah!'
-// };
-
-// const localStrategy = new LocalStrategy(localOptions, (email, password, done) => {
-//   // Verify username and password
-//   User.findOne({ email }, (err, user) => {
-//     if (err) { return done(err); }
-//     if (!user) { return done(null, false); }
-//     user.comparePassword(password, (err, isMatch) => {
-//       if (err) { return done(err); }
-//       if (!isMatch) { return done(null, false); }
-//       return done(null, user);
-//     });
-//   });
-// });
+const localStrategy = new LocalStrategy(localOptions, (email, password, done) => {
+  // Verify username and password
+  User.findOne({ email }, (err, user) => {
+    if (err) { return done(err); }
+    if (!user) { return done(null, false); }
+    user.comparePassword(password, (err, isMatch) => {
+      if (err) { return done(err); }
+      if (!isMatch) { return done(null, false); }
+      return done(null, user);
+    });
+  });
+});
 
 const jwtOptions = {
   secretOrKey: config.secret,
@@ -41,5 +39,5 @@ const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
   });
 });
 
-// passport.use(localStrategy);
+passport.use(localStrategy);
 passport.use(jwtStrategy);
