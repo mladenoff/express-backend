@@ -1,3 +1,6 @@
+/* eslint "no-var": 0 */
+/* eslint "comma-dangle": 0 */
+
 var path = require('path');
 var webpack = require('webpack');
 
@@ -8,7 +11,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'babel-loader',
@@ -18,9 +21,6 @@ module.exports = {
         }
       }
     ],
-    rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }
-    ]
   },
   stats: {
     colors: true

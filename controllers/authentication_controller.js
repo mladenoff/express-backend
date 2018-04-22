@@ -12,7 +12,6 @@ const tokenForUser = function tokenForUser(user) {
 };
 
 export const signin = function signin(req, res, next) {
-  console.log(req.user);
   const { user } = req;
   res.send({ token: tokenForUser(user), user_id: user._id });
 };

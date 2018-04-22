@@ -20,11 +20,11 @@ router.route('/signup')
 
 // Routes
 
-function protectedRoute(req, res, next) {
-  res.send('Here\'s the secret!');
-}
+// function protectedRoute(req, res, next) {
+//   res.send('Here\'s the secret!');
+// }
 
-router.route('/protected')
-  .get(requireAuth, protectedRoute);
+// router.route('/protected')
+//   .get(requireAuth, protectedRoute);
 
 export default router;

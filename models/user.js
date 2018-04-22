@@ -29,7 +29,7 @@ userSchema.pre('save', function callback(next) {
       bcrypt.hash(user.password, salt, null, (err, hash) => {
         if (err) { return next(err); }
         user.password = hash;
-        next();
+        return next();
       });
     });
   } else {
@@ -40,7 +40,7 @@ userSchema.pre('save', function callback(next) {
 userSchema.methods.comparePassword = function comparePassword(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) { return callback(null, isMatch); }
-    callback(null, isMatch);
+    return callback(null, isMatch);
   });
 };
 
