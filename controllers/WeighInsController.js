@@ -1,0 +1,1 @@
+import WeighIn from '../models/WeighIn';

@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
+import WeighIn from './WeighIn';
 // const Schema = mongoose.Schema;
 // replaced with object destructuring in `import`
 
@@ -19,6 +20,7 @@ const userSchema = new Schema({
   password: {
     type: String,
   },
+  weighIns: [WeighIn],
 });
 
 userSchema.pre('save', function callback(next) {

@@ -2,7 +2,10 @@ import express from 'express';
 import passport from 'passport';
 
 import passportService from './passport'; // This just invokes the stuff in ./passport; consider refactoring?
-import * as AuthenticationController from '../controllers/authentication_controller';
+
+import * as AuthenticationController from '../controllers/AuthenticationController';
+import * as WeighInsController from '../controllers/WeighInsController';
+
 
 const router = express.Router();
 
@@ -18,13 +21,19 @@ router.route('/signin')
 router.route('/signup')
   .post(AuthenticationController.signup);
 
-// Routes
+// WeighIn Routes
 
-// function protectedRoute(req, res, next) {
-//   res.send('Here\'s the secret!');
-// }
+router.route('/users/:user_id/weigh_ins')
+  .post(requireAuth, WeighInsController.create)
+  .get(requireAuth, WeighInsController.index);
 
-// router.route('/protected')
-//   .get(requireAuth, protectedRoute);
+// Extra (test?) Routes
+
+function protectedRoute(req, res, next) {
+  res.send('Here\'s the secret!');
+}
+
+router.route('/protected')
+  .get(requireAuth, protectedRoute);
 
 export default router;
