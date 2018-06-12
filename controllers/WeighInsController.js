@@ -1,4 +1,4 @@
-import User from '../models/user';
+import User from '../models/User';
 
 export const create = function create(req, res, next) {
   const { user } = req;

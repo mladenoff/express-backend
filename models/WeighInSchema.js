@@ -3,6 +3,7 @@ import { Schema } from 'mongoose';
 const WeighInSchema = new Schema({
   weight: {
     type: Number,
+    required: 'A value is required',
   },
   unit: {
     type: String,

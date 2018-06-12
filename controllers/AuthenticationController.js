@@ -1,6 +1,6 @@
 import jwt from 'jwt-simple';
 
-import User from '../models/user';
+import User from '../models/User';
 import config from '../config';
 
 const tokenForUser = function tokenForUser(user) {

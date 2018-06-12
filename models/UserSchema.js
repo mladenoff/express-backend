@@ -3,10 +3,6 @@ import bcrypt from 'bcrypt-nodejs';
 
 import WeighInSchema from './WeighInSchema';
 
-// import WeighIn from './WeighIn';
-// const Schema = mongoose.Schema;
-// replaced with object destructuring in `import`
-
 const validateEmail = email => (
   (/\S+@\S+\.\S+/).test(email)
 );
@@ -58,4 +54,5 @@ UserSchema.statics.allUserWeighIns = function allUserWeighIns() {
   });
 };
 
-export default mongoose.model('User', UserSchema);
+// export default mongoose.model('User', UserSchema);
+export default UserSchema;

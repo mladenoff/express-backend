@@ -3,11 +3,10 @@ import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import LocalStrategy from 'passport-local';
 
 import config from '../config';
-import User from '../models/user';
+import User from '../models/User';
 
 const localOptions = {
   usernameField: 'email',
-  secretOrKey: 'gah!',
 };
 
 const localStrategy = new LocalStrategy(localOptions, (email, password, done) => {
