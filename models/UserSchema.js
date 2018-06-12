@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
+import WeighInSchema from './WeighInSchema';
+
 // import WeighIn from './WeighIn';
 // const Schema = mongoose.Schema;
 // replaced with object destructuring in `import`
@@ -9,21 +11,7 @@ const validateEmail = email => (
   (/\S+@\S+\.\S+/).test(email)
 );
 
-const WeighIn = new Schema({
-  weight: {
-    type: Number,
-  },
-  unit: {
-    type: String,
-    default: 'lb',
-  },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-const User = new Schema({
+const UserSchema = new Schema({
   email: {
     type: String,
     unique: true,
@@ -34,10 +22,10 @@ const User = new Schema({
   password: {
     type: String,
   },
-  weighIns: [WeighIn],
+  weighIns: [WeighInSchema],
 });
 
-User.pre('save', function callback(next) {
+UserSchema.pre('save', function callback(next) {
   const user = this;
   if (user.isNew || user.isModified('password')) {
     bcrypt.genSalt(10, (err, salt) => {
@@ -53,14 +41,14 @@ User.pre('save', function callback(next) {
   }
 });
 
-User.methods.comparePassword = function comparePassword(candidatePassword, callback) {
+UserSchema.methods.comparePassword = function comparePassword(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) { return callback(null, isMatch); }
     return callback(null, isMatch);
   });
 };
 
-User.statics.allUserWeighIns = function allUserWeighIns() {
+UserSchema.statics.allUserWeighIns = function allUserWeighIns() {
   return this.find().then((users) => {
     const weighIns = [];
     users.forEach((user) => {
@@ -70,4 +58,4 @@ User.statics.allUserWeighIns = function allUserWeighIns() {
   });
 };
 
-export default mongoose.model('User', User);
+export default mongoose.model('User', UserSchema);
