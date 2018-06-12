@@ -21,7 +21,11 @@ router.route('/signup')
 
 // WeighIn Routes
 
-router.route('/weigh_ins/')
+router.route('/weigh_ins')
+  .get(WeighInsController.index);
+// .post(requireAuth, WeighInsController.create)
+
+router.route('/users/:userId/weigh_ins')
   .post(requireAuth, WeighInsController.create)
   .get(requireAuth, WeighInsController.index);
 

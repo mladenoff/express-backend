@@ -1,3 +1,5 @@
+import User from '../models/user';
+
 export const create = function create(req, res, next) {
   const { user } = req;
   const { weight, unit } = req.body;
@@ -13,8 +15,11 @@ export const create = function create(req, res, next) {
 };
 
 export const index = function index(req, res, next) {
-  // if (req.user) {
-  res.json({ weighIns: req.user.weighIns });
-  // }
-  // res.json({ weighIns: })
+  if (req.params.userId) {
+    res.json({ weighIns: req.user.weighIns });
+  } else {
+    User.allUserWeighIns().then((weighIns) => {
+      res.json({ weighIns });
+    });
+  }
 };

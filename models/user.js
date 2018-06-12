@@ -60,4 +60,14 @@ User.methods.comparePassword = function comparePassword(candidatePassword, callb
   });
 };
 
+User.statics.allUserWeighIns = function allUserWeighIns() {
+  return this.find().then((users) => {
+    const weighIns = [];
+    users.forEach((user) => {
+      weighIns.push(...user.weighIns);
+    });
+    return weighIns;
+  });
+};
+
 export default mongoose.model('User', User);
