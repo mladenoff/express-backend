@@ -1,16 +1,14 @@
 import User from '../models/User';
 
 export const create = function create(req, res, next) {
-  const { user } = req;
-  const { weight, unit } = req.body;
+  const { user, body: { weight, unit } } = req;
   const count = user.weighIns.push({
     weight,
     unit,
   });
-  const _id = user.weighIns[count - 1]._id;
   user.save((err) => {
     if (err) { return next(err); }
-    res.json({ weighIn: { weight, _id } });
+    res.json({ weighIn: user.weighIns[count - 1] });
   });
 };
 
