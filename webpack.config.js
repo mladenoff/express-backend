@@ -1,10 +1,12 @@
 /* eslint "no-var": 0 */
 /* eslint "comma-dangle": 0 */
 
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+// const webpack = require('webpack');
+const mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
+  mode,
   entry: ['./index.js'],
   output: {
     path: path.resolve(__dirname),

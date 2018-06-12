@@ -7,7 +7,11 @@ import router from './services/router';
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:intoToAuth/introToAuth');
+mongoose.connect('mongodb://localhost:introToAuth/introToAuth')
+  .catch((err) => { // we will not be here...
+    console.error('Mongoose connection error:', err.stack);
+    process.exit(1);
+  });
 
 app.use(morgan('combined'));
 app.use(bodyParser.json());
