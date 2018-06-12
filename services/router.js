@@ -6,12 +6,10 @@ import passportService from './passport'; // This just invokes the stuff in ./pa
 import * as AuthenticationController from '../controllers/AuthenticationController';
 import * as WeighInsController from '../controllers/WeighInsController';
 
-
 const router = express.Router();
 
 const requireAuth = passport.authenticate('jwt', { session: false });
 const requireLogin = passport.authenticate('local', { session: false });
-
 
 // Auth Routes
 
@@ -23,9 +21,13 @@ router.route('/signup')
 
 // WeighIn Routes
 
-router.route('/users/:user_id/weigh_ins')
+router.route('/weigh_ins/')
   .post(requireAuth, WeighInsController.create)
   .get(requireAuth, WeighInsController.index);
+
+// router.route('/users/:userId/weigh_ins')
+//   .post(requireAuth, WeighInsController.create)
+//   .get(requireAuth, WeighInsController.index);
 
 // Extra (test?) Routes
 

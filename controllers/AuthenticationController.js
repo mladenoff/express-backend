@@ -13,7 +13,7 @@ const tokenForUser = function tokenForUser(user) {
 
 export const signin = function signin(req, res, next) {
   const { user } = req;
-  res.send({ token: tokenForUser(user), user_id: user._id });
+  res.send({ token: tokenForUser(user), userId: user._id });
 };
 
 export const signup = function signup(req, res, next) {
@@ -32,7 +32,7 @@ export const signup = function signup(req, res, next) {
     });
     user.save((err) => {
       if (err) { return next(err); }
-      res.json({ user_id: user._id, token: tokenForUser(user) });
+      res.json({ userId: user._id, token: tokenForUser(user) });
     });
   });
 };

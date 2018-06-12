@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 
-import WeighIn from './WeighIn';
+// import WeighIn from './WeighIn';
 // const Schema = mongoose.Schema;
 // replaced with object destructuring in `import`
 
@@ -9,7 +9,21 @@ const validateEmail = email => (
   (/\S+@\S+\.\S+/).test(email)
 );
 
-const userSchema = new Schema({
+const WeighIn = new Schema({
+  weight: {
+    type: Number,
+  },
+  unit: {
+    type: String,
+    default: 'lb',
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const User = new Schema({
   email: {
     type: String,
     unique: true,
@@ -23,7 +37,7 @@ const userSchema = new Schema({
   weighIns: [WeighIn],
 });
 
-userSchema.pre('save', function callback(next) {
+User.pre('save', function callback(next) {
   const user = this;
   if (user.isNew || user.isModified('password')) {
     bcrypt.genSalt(10, (err, salt) => {
@@ -39,11 +53,11 @@ userSchema.pre('save', function callback(next) {
   }
 });
 
-userSchema.methods.comparePassword = function comparePassword(candidatePassword, callback) {
+User.methods.comparePassword = function comparePassword(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
     if (err) { return callback(null, isMatch); }
     return callback(null, isMatch);
   });
 };
 
-export default mongoose.model('user', userSchema);
+export default mongoose.model('User', User);

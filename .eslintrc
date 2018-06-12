@@ -9,6 +9,7 @@
   "extends": "airbnb",
   "env": {
     "browser": true,
+    "mongo": true,
     "node": true
   },
   "plugins": ["react"]
