@@ -59,10 +59,5 @@ typings/
 
 # webpack shit
 bundle.js*
-server.js*
 
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-.ebextensions/*
+.git

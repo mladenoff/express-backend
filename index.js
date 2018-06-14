@@ -7,8 +7,8 @@ import router from './services/router';
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/introToAuth')
-  .catch((err) => { // we will not be here...
+mongoose.connect(process.env.MLAB_URI)
+  .catch((err) => {
     console.error('Mongoose connection error:', err.stack);
     process.exit(1);
   });
