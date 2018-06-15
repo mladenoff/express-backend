@@ -1,4 +1,10 @@
 # WayOut API
 
-# Technology
+## Use
+
+### Authorization
+
+
+
+## Technology
 
