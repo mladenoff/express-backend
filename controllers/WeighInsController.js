@@ -12,7 +12,7 @@ export const create = function create(req, res, next) {
   });
 };
 
-export const index = function index(req, res, next) {
+export const index = function index(req, res/* , next */) {
   if (req.params.userId) {
     res.json({ weighIns: req.user.weighIns });
   } else {
