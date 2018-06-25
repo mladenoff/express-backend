@@ -58,7 +58,7 @@ typings/
 .env
 
 # webpack shit
-bundle.js*
+*bundle.js*
 server.js*
 
 # Elastic Beanstalk Files

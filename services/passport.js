@@ -13,7 +13,9 @@ const localStrategy = new LocalStrategy(localOptions, (email, password, done) =>
   // Verify username and password
   User.findOne({ email }, (err, user) => {
     if (err) { return done(err); }
+
     if (!user) { return done(null, false); }
+
     user.comparePassword(password, (err, isMatch) => {
       if (err) { return done(err); }
       if (!isMatch) { return done(null, false); }
@@ -30,6 +32,7 @@ const jwtOptions = {
 const jwtStrategy = new JwtStrategy(jwtOptions, (payload, done) => {
   User.findById(payload.sub, (err, user) => {
     if (err) { return done(err, false); }
+
     if (user) {
       done(null, user);
     } else {

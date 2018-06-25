@@ -36,7 +36,8 @@ router.route('/users/:userId/weigh_ins')
 
 // Extra (test?) Routes
 
-function protectedRoute(req, res, next) {
+function protectedRoute(req, res) {
+  // function protectedRoute(req, res, next) { // swap this in to use middleware
   res.send('Here\'s the secret!');
 }
 
